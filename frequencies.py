@@ -21,11 +21,6 @@ def calculate_rmse(raw_corpus, raw_text):
     corpus = get_normalized_frequencies(raw_corpus)
     text = get_normalized_frequencies(raw_text)
 
-    # Set missing words in text that appear in corpus to 0
-    for key in corpus:
-        if not text.get(key):
-            text.setdefault(key, 0)
-
     # Subtract the text values from the corpus values by key
     values = {key: corpus[key] - text.get(key, 0) for key in corpus.keys()}
 
@@ -36,7 +31,7 @@ def calculate_rmse(raw_corpus, raw_text):
     import ipdb; ipdb.set_trace()
 
 if __name__ == '__main__':
-    with open('weight-loss-articles-1.json', 'r') as f:
+    with open('articles-1.json', 'r') as f:
         data = json.load(f)
 
     articles = ''
